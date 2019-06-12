@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import excepciones.ExceptionNulo;
 
 
 class TestCliente {
@@ -24,4 +27,22 @@ class TestCliente {
 		
 	}
 
+	
+	@Test
+	void factoryCliente_atributosCliente_instanciaIncorrecta() {
+		
+			
+		Assertions.assertThrows(ExceptionNulo.class, ()-> Cliente.factoryCliente(null, "Jose", "39300672", LocalDate.of(1996, 8, 16)));
+		
+		Assertions.assertThrows(ExceptionNulo.class, ()-> Cliente.factoryCliente("Soria", null, "39300672", LocalDate.of(1996, 8, 16)));
+
+		Assertions.assertThrows(ExceptionNulo.class, ()-> Cliente.factoryCliente("Soria", "Jose", null , LocalDate.of(1996, 8, 16)));
+		
+		Assertions.assertThrows(ExceptionNulo.class, ()-> Cliente.factoryCliente("Soria", "Jose", "39300672" , null));
+
+		
+	}
+
+	
+	
 }
